@@ -39,13 +39,15 @@ if %ERRORLEVEL% equ -1 (
     set svgtoicoShimArgs=--shimgen-waitforexit
 )
 
-:: Generate PNG files from SVG (sizes: 16x16, 24x24, 32x32, 48x48, 64x64, 256x256)
+:: Generate PNG files from SVG (sizes: 16x16, 24x24, 32x32, 48x48, 64x64, 128x128, 256x256, 512x512)
 inkscape.exe -w 16 -h 16 -o "%svgtoicoTempDir%\16.png" "%1" %svgtoicoShimArgs%
 inkscape.exe -w 24 -h 24 -o "%svgtoicoTempDir%\24.png" "%1" %svgtoicoShimArgs%
 inkscape.exe -w 32 -h 32 -o "%svgtoicoTempDir%\32.png" "%1" %svgtoicoShimArgs%
 inkscape.exe -w 48 -h 48 -o "%svgtoicoTempDir%\48.png" "%1" %svgtoicoShimArgs%
 inkscape.exe -w 64 -h 64 -o "%svgtoicoTempDir%\64.png" "%1" %svgtoicoShimArgs%
+inkscape.exe -w 128 -h 128 -o "%svgtoicoTempDir%\128.png" "%1" %svgtoicoShimArgs%
 inkscape.exe -w 256 -h 256 -o "%svgtoicoTempDir%\256.png" "%1" %svgtoicoShimArgs%
+inkscape.exe -w 512 -h 512 -o "%svgtoicoTempDir%\512.png" "%1" %svgtoicoShimArgs%
 
 :: Create ICO file from set of PNGs
 py -m iconify -win "%svgtoicoTempDir%" "%svgtoicoTempDir%\icon"
@@ -61,7 +63,9 @@ del "%svgtoicoTempDir%\24.png"
 del "%svgtoicoTempDir%\32.png"
 del "%svgtoicoTempDir%\48.png"
 del "%svgtoicoTempDir%\64.png"
+del "%svgtoicoTempDir%\128.png"
 del "%svgtoicoTempDir%\256.png"
+del "%svgtoicoTempDir%\512.png"
 rmdir "%svgtoicoTempDir%"
 
 :end
